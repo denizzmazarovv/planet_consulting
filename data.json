@@ -1,0 +1,480 @@
+{
+    "hero": {
+        "title": {
+            "ru": "Planet Consalting",
+            "uz": "Planet Consalting",
+            "en": "Planet Consalting"
+        },
+        "subtitle": {
+            "ru": "Помогаем вам освоить международные рынки и расширить бизнес",
+            "uz": "Xalqaro bozorlarga kirishda va biznesni kengaytirishda yordam beramiz",
+            "en": "Helping you enter international markets and expand your business"
+        },
+        "button": {
+            "ru": "Начать сотрудничество",
+            "uz": "Hamkorlikni boshlash",
+            "en": "Start Partnership"
+        }
+    },
+    "about": {
+        "title": {
+            "ru": "О нашей компании",
+            "uz": "Kompaniyamiz haqida",
+            "en": "About Our Company"
+        },
+        "text": {
+            "ru": "Мы предоставляем экспертные консультации для бизнеса в 12 странах мира",
+            "uz": "Biz dunyo bo'ylab 12 mamlakatda biznes uchun mutaxassislarning maslahatlarini taqdim etamiz",
+            "en": "We provide expert consulting services for businesses in 12 countries worldwide"
+        },
+        "items": [
+            {
+                "title": {
+                    "ru": "Международный опыт",
+                    "uz": "Xalqaro tajriba",
+                    "en": "International Experience"
+                },
+                "text": {
+                    "ru": "10 лет опыта работы в международных рынках",
+                    "uz": "Xalqaro bozorlarda 10 yillik tajriba",
+                    "en": "10 years of experience in international markets"
+                }
+            },
+            {
+                "title": {
+                    "ru": "Экспертная команда",
+                    "uz": "Mutaxassislar jamoasi",
+                    "en": "Expert Team"
+                },
+                "text": {
+                    "ru": "Команда из 50+ специалистов по всему миру",
+                    "uz": "Butun dunyo bo'ylab 50+ mutaxassislar jamoasi",
+                    "en": "Team of 50+ specialists worldwide"
+                }
+            },
+            {
+                "title": {
+                    "ru": "Результаты",
+                    "uz": "Natijalar",
+                    "en": "Results"
+                },
+                "text": {
+                    "ru": "Более 500 успешных проектов",
+                    "uz": "500 dan ortiq muvaffaqiyatli loyihalar",
+                    "en": "More than 500 successful projects"
+                }
+            }
+        ]
+    },
+    "countries": {
+        "title": {
+            "ru": "Наши страны",
+            "uz": "Bizning mamlakatlar",
+            "en": "Our Countries"
+        },
+        "text": {
+            "ru": "Мы предоставляем услуги в 12 ключевых странах мира",
+            "uz": "Biz dunyo bo'ylab 12 asosiy mamlakatlarda xizmat ko'rsatamiz",
+            "en": "We provide services in 12 key countries worldwide"
+        },
+        "list": [
+            {
+                "id": 1,
+                "name": {
+                    "ru": "США",
+                    "uz": "AQSH",
+                    "en": "USA"
+                },
+                "description": {
+                    "ru": "Экономические консультации для бизнеса в США",
+                    "uz": "AQSHda biznes uchun iqtisodiy maslahatlar",
+                    "en": "Economic consulting for business in the USA"
+                },
+                "image": "uploads\/country_1_1754973310.jpg"
+            },
+            {
+                "id": 2,
+                "name": {
+                    "ru": "Канада",
+                    "uz": "Kanada",
+                    "en": "Canada"
+                },
+                "description": {
+                    "ru": "Консультации по международной торговле в Канаде",
+                    "uz": "Kanadada xalqaro savdo maslahatlari",
+                    "en": "International trade consulting in Canada"
+                },
+                "image": "uploads\/country_2_1754982529.jpg"
+            },
+            {
+                "id": 3,
+                "name": {
+                    "ru": "Южная Корея",
+                    "uz": "Janubiy Koreya",
+                    "en": "South Korea"
+                },
+                "description": {
+                    "ru": "Бизнес-консультации в Южной Корее",
+                    "uz": "Janubiy Koreyada biznes maslahatlari",
+                    "en": "Business consulting in South Korea"
+                },
+                "image": "uploads\/country_3_1754982523.jpg"
+            },
+            {
+                "id": 4,
+                "name": {
+                    "ru": "Латвия",
+                    "uz": "Latviya",
+                    "en": "Latvia"
+                },
+                "description": {
+                    "ru": "Консультации по европейскому рынку в Латвии",
+                    "uz": "Latviyada Yevropa bozori maslahatlari",
+                    "en": "European market consulting in Latvia"
+                },
+                "image": "uploads\/country_4_1754982512.jpg"
+            },
+            {
+                "id": 5,
+                "name": {
+                    "ru": "Литва",
+                    "uz": "Litva",
+                    "en": "Lithuania"
+                },
+                "description": {
+                    "ru": "Инвестиционные консультации в Литве",
+                    "uz": "Litvada investitsiya maslahatlari",
+                    "en": "Investment consulting in Lithuania"
+                },
+                "image": "uploads\/country_5_1754982504.jpg"
+            },
+            {
+                "id": 6,
+                "name": {
+                    "ru": "Сингапур",
+                    "uz": "Singapur",
+                    "en": "Singapore"
+                },
+                "description": {
+                    "ru": "Финансовые консультации в Сингапуре",
+                    "uz": "Singaporda moliyaviy maslahatlar",
+                    "en": "Financial consulting in Singapore"
+                },
+                "image": "uploads\/country_6_1754982483.jpg"
+            },
+            {
+                "id": 7,
+                "name": {
+                    "ru": "Малайзия",
+                    "uz": "Malayziya",
+                    "en": "Malaysia"
+                },
+                "description": {
+                    "ru": "Консультации по Азиатскому рынку в Малайзии",
+                    "uz": "Malayziyada Osiyo bozori maslahatlari",
+                    "en": "Asian market consulting in Malaysia"
+                },
+                "image": "uploads\/country_7_1754982460.jpg"
+            },
+            {
+                "id": 8,
+                "name": {
+                    "ru": "Австрия",
+                    "uz": "Avstriya",
+                    "en": "Austria"
+                },
+                "description": {
+                    "ru": "Бизнес-консультации в Австрии",
+                    "uz": "Avstriyada biznes maslahatlari",
+                    "en": "Business consulting in Austria"
+                },
+                "image": "uploads\/country_8_1754982451.jpg"
+            },
+            {
+                "id": 9,
+                "name": {
+                    "ru": "Россия",
+                    "uz": "Rossiya",
+                    "en": "Russia"
+                },
+                "description": {
+                    "ru": "Консультации по российскому рынку",
+                    "uz": "Rossiya bozori maslahatlari",
+                    "en": "Russian market consulting"
+                },
+                "image": "uploads\/country_9_1754982438.jpg"
+            },
+            {
+                "id": 10,
+                "name": {
+                    "ru": "Китай",
+                    "uz": "Xitoy",
+                    "en": "China"
+                },
+                "description": {
+                    "ru": "Консультации по китайскому рынку",
+                    "uz": "Xitoy bozori maslahatlari",
+                    "en": "Chinese market consulting"
+                },
+                "image": "uploads\/country_10_1754982414.jpg"
+            },
+            {
+                "id": 11,
+                "name": {
+                    "ru": "Япония",
+                    "uz": "Yaponiya",
+                    "en": "Japan"
+                },
+                "description": {
+                    "ru": "Бизнес-консультации в Японии",
+                    "uz": "Yaponiyada biznes maslahatlari",
+                    "en": "Business consulting in Japan"
+                },
+                "image": "uploads\/country_11_1754982403.jpg"
+            },
+            {
+                "id": 12,
+                "name": {
+                    "ru": "Германия",
+                    "uz": "Germaniya",
+                    "en": "Germany"
+                },
+                "description": {
+                    "ru": "Индустриальные консультации в Германии",
+                    "uz": "Germaniyada sanoat maslahatlari",
+                    "en": "Industrial consulting in Germany"
+                },
+                "image": "uploads\/country_12_1754982378.jpg"
+            }
+        ]
+    },
+    "stats": {
+        "items": [
+            {
+                "number": "12",
+                "text": {
+                    "ru": "Стран",
+                    "uz": "Mamlakatlar",
+                    "en": "Countries"
+                }
+            },
+            {
+                "number": "500+",
+                "text": {
+                    "ru": "Проектов",
+                    "uz": "Loyihalar",
+                    "en": "Projects"
+                }
+            },
+            {
+                "number": "50+",
+                "text": {
+                    "ru": "Экспертов",
+                    "uz": "Mutaxassislar",
+                    "en": "Experts"
+                }
+            },
+            {
+                "number": "7",
+                "text": {
+                    "ru": "Лет опыта",
+                    "uz": "Yillik tajriba",
+                    "en": "Years of experience"
+                }
+            }
+        ]
+    },
+    "contact": {
+        "title": {
+            "ru": "Связаться с нами",
+            "uz": "Biz bilan bog'lanish",
+            "en": "Contact Us"
+        },
+        "text": {
+            "ru": "Оставьте заявку и мы свяжемся с вами в ближайшее время",
+            "uz": "Ariza qoldiring va biz siz bilan tez orada bog'lanamiz",
+            "en": "Leave a request and we will contact you shortly"
+        },
+        "namePlaceholder": {
+            "ru": "Ваше имя",
+            "uz": "Ismingiz",
+            "en": "Your Name"
+        },
+        "emailPlaceholder": {
+            "ru": "Ваш email",
+            "uz": "Email manzilingiz",
+            "en": "Your Email"
+        },
+        "phonePlaceholder": {
+            "ru": "Ваш телефон",
+            "uz": "Telefon raqamingiz",
+            "en": "Your Phone"
+        },
+        "messagePlaceholder": {
+            "ru": "Ваше сообщение",
+            "uz": "Xabaringiz",
+            "en": "Your Message"
+        },
+        "button": {
+            "ru": "Отправить сообщение",
+            "uz": "Xabar yuborish",
+            "en": "Send Message"
+        },
+        "infoTitle": {
+            "ru": "Контактная информация",
+            "uz": "Aloqa ma'lumotlari",
+            "en": "Contact Information"
+        },
+        "locationTitle": {
+            "ru": "Адрес",
+            "uz": "Manzil",
+            "en": "Address"
+        },
+        "phoneTitle": {
+            "ru": "Телефон",
+            "uz": "Telefon",
+            "en": "Phone"
+        },
+        "telegramTitle": {
+            "ru": "Telegram",
+            "uz": "Telegram",
+            "en": "Telegram"
+        },
+        "instagramTitle": {
+            "ru": "Instagram",
+            "uz": "Instagram",
+            "en": "Instagram"
+        },
+        "emailTitle": {
+            "ru": "Email",
+            "uz": "Email",
+            "en": "Email"
+        },
+        "address": {
+            "ru": "г. Ташкент, ул. Мирzo Улугбек",
+            "uz": "Toshkent sh., Mirzo Ulug'bek ko'ch.",
+            "en": "Tashkent, Mirzo Ulugbek st."
+        },
+        "phone": {
+            "ru": "+998 94 171 71 94",
+            "uz": "+998 94 171 71 94",
+            "en": "+998 94 171 71 94"
+        },
+        "telegram": {
+            "ru": "@weblezen",
+            "uz": "@weblezen",
+            "en": "@weblezen"
+        },
+        "instagram": {
+            "ru": "@web_lezen",
+            "uz": "@web_lezen",
+            "en": "@web_lezen"
+        },
+        "emailContact": {
+            "ru": "lezenuz@gmail.com",
+            "uz": "lezenuz@gmail.com",
+            "en": "lezenuz@gmail.com"
+        },
+        "telegramLink": {
+            "ru": "https:\/\/t.me\/weblezen",
+            "uz": "https:\/\/t.me\/weblezen",
+            "en": "https:\/\/t.me\/weblezen"
+        },
+        "instagramLink": {
+            "ru": "https:\/\/www.instagram.com\/web_lezen",
+            "uz": "https:\/\/www.instagram.com\/web_lezen",
+            "en": "https:\/\/www.instagram.com\/web_lezen"
+        }
+    },
+    "footer": {
+        "title": {
+            "ru": "Global Consulting",
+            "uz": "Global Consulting",
+            "en": "Global Consulting"
+        },
+        "text": {
+            "ru": "Ваш надежный партнер в международном бизнесе",
+            "uz": "Xalqaro biznesdagi ishonchli hamkor",
+            "en": "Your reliable partner in international business"
+        },
+        "menu1": {
+            "ru": "Меню",
+            "uz": "Menyu",
+            "en": "Menu"
+        },
+        "menu2": {
+            "ru": "Услуги",
+            "uz": "Xizmatlar",
+            "en": "Services"
+        },
+        "contact": {
+            "ru": "Контакты",
+            "uz": "Kontaktlar",
+            "en": "Contacts"
+        },
+        "links": [
+            {
+                "ru": "Главная",
+                "uz": "Bosh sahifa",
+                "en": "Home"
+            },
+            {
+                "ru": "О нас",
+                "uz": "Biz haqimizda",
+                "en": "About Us"
+            },
+            {
+                "ru": "Страны",
+                "uz": "Mamlakatlar",
+                "en": "Countries"
+            },
+            {
+                "ru": "Контакты",
+                "uz": "Kontaktlar",
+                "en": "Contacts"
+            }
+        ],
+        "services": [
+            {
+                "ru": "Консультации",
+                "uz": "Konsalting",
+                "en": "Consulting"
+            },
+            {
+                "ru": "Анализ рынка",
+                "uz": "Bozor tahlili",
+                "en": "Market Analysis"
+            },
+            {
+                "ru": "Инвестиции",
+                "uz": "Investitsiyalar",
+                "en": "Investments"
+            },
+            {
+                "ru": "Партнерство",
+                "uz": "Hamkorlik",
+                "en": "Partnership"
+            }
+        ],
+        "address": {
+            "ru": "г. Ташкент, ул. Мирzo Улугбек",
+            "uz": "Toshkent sh., Mirzo Ulug'bek ko'ch.",
+            "en": "Tashkent, Mirzo Ulugbek st."
+        },
+        "phone": {
+            "ru": "+998 94 171 71 94",
+            "uz": "+998 94 171 71 94",
+            "en": "+998 94 171 71 94"
+        },
+        "email": {
+            "ru": "lezenuz@gmail.com",
+            "uz": "lezenuz@gmail.com",
+            "en": "lezenuz@gmail.com"
+        },
+        "copyright": {
+            "ru": "&copy; 2025 Planet Consulting. Все права защищены.",
+            "uz": "&copy; 2025 Planet Consulting. Barcha huquqlar himoyalangan.",
+            "en": "&copy; 2025 Planet Consulting. All rights reserved."
+        }
+    }
+}

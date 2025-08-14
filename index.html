@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Consulting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #253167;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: var(--accent);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin: 0 30px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--light);
+            padding: 12px 18px;
+            margin: 0 5px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.1);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 70%;
+        }
+        
+        /* Language Switcher */
+        .language-switcher-container {
+            position: relative;
+        }
+        
+        .language-btn {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-btn:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            padding: 10px 0;
+            margin-top: 10px;
+            min-width: 150px;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .language-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .language-option {
+            padding: 12px 20px;
+            color: var(--secondary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .language-option:hover {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+        
+        .language-option.active {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-trigger {
+            display: none;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-trigger:hover {
+            background: #1d4ed8;
+            transform: rotate(90deg);
+        }
+        
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-nav-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-nav-content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+            overflow-y: auto;
+            padding: 30px 20px;
+        }
+        
+        .mobile-nav-content.show {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .mobile-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .mobile-logo span {
+            color: var(--accent);
+        }
+        
+        .mobile-close-btn {
+            background: #f1f5f9;
+            border: none;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-close-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-nav-link {
+            padding: 15px 20px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+        
+        .mobile-nav-link i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .mobile-language-section {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .mobile-language-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-language-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-language-option {
+            padding: 12px 15px;
+            border-radius: 10px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-language-option:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+        
+        .mobile-language-option.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('uploads/backg_pk.jpg');
+            background-size: cover;
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('uploads/') fixed;
+            opacity: 0.1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btn {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            padding: 15px 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            color: var(--light);
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .hero-btn:hover {
+            color: var(--light);
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        /* About Section - Улучшенный */
+        .about {
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 20%);
+        }
+        
+        .about-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .about-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .about-content:hover .about-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .about-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .about-content:hover h3 {
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            color: #64748b;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        .about-content:hover p {
+            color: #475569;
+        }
+        
+        /* Countries Section */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .country-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .country-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .country-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .country-card:hover .country-img {
+            transform: scale(1.05);
+        }
+        
+        .country-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .country-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .country-content p {
+            color: #64748b;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact Section - Улучшенный */
+        .contact-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        }
+        
+        .contact-container {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 50px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover .contact-icon {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .contact-details h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .contact-form-container {
+            padding: 50px;
+        }
+        
+        .contact-form {
+            width: 100%;
+        }
+        
+        .form-control, .form-select {
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            /* color: var(--light); */
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-top: 40px;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        /* Admin Link */
+        .admin-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .admin-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: #ea580c;
+            transform: scale(1.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-trigger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .contact-info, .contact-form-container {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .countries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-nav-content {
+                width: 280px;
+            }
+            
+            .contact-info, .contact-form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="#hero">
+                <img src="uploads/logo.png" alt="" style="height: 40px;">
+                
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <div class="nav-links">
+                    <a class="nav-link" href="#hero" id="navHome"></a>
+                    <a class="nav-link" href="#about" id="navAbout"></a>
+                    <a class="nav-link" href="#countries" id="navCountries"></a>
+                    <a class="nav-link" href="#contact" id="navContact"></a>
+                </div>
+                
+                <div class="language-switcher-container">
+                    <button class="language-btn" id="languageBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLanguageText">РУС</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <a href="#" class="language-option active" data-lang="ru">🇷🇺Русский</a>
+                        <a href="#" class="language-option" data-lang="uz">🇺🇿O'zbek</a>
+                        <a href="#" class="language-option" data-lang="en">🇺🇸English</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Trigger -->
+            <button class="mobile-nav-trigger" id="mobileNavTrigger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    
+    <!-- Mobile Navigation Content -->
+    <div class="mobile-nav-content" id="mobileNavContent">
+        <div class="mobile-nav-header">
+            <a class="mobile-logo" href="#hero">
+                <i class="fas fa-globe-americas"></i>
+                <span id="mobileLogoText">Planet<span>Consulting</span></span>
+            </a>
+            <button class="mobile-close-btn" id="mobileCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav-links">
+            <a class="mobile-nav-link" href="#hero" data-section="hero">
+                <i class="fas fa-home"></i>
+                <span id="mobileNavHome"></span>
+            </a>
+            <a class="mobile-nav-link" href="#about" data-section="about">
+                <i class="fas fa-info-circle"></i>
+                <span id="mobileNavAbout"></span>
+            </a>
+            <a class="mobile-nav-link" href="#countries" data-section="countries">
+                <i class="fas fa-globe"></i>
+                <span id="mobileNavCountries"></span>
+            </a>
+            <a class="mobile-nav-link" href="#contact" data-section="contact">
+                <i class="fas fa-envelope"></i>
+                <span id="mobileNavContact"></span>
+            </a>
+        </div>
+        
+        <div class="mobile-language-section">
+            <div class="mobile-language-title">
+                <i class="fas fa-language"></i>
+                <span id="mobileLanguageTitle">Язык</span>
+            </div>
+            <div class="mobile-language-options">
+                <a href="#" class="mobile-language-option active" data-lang="ru">
+                    <i class="fas fa-check"></i>
+                    <span id="LangRu">🇷🇺Русский</span>
+                </a>
+                <a href="#" class="mobile-language-option" data-lang="uz">
+                    <i class="far fa-circle"></i>
+                    <span id="langUz">🇺🇿O'zbek</span>
+                </a>
+                <a href="#" class="mobile-language-option" data-lang="en">
+                    <i class="far fa-circle"></i>
+                    <span id="langEn">🇺🇸English</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container text-center">
+            <h1 id="heroTitle"></h1>
+            <p id="heroSubtitle"></p>
+            <a href="#contact" id="heroButton" style="text-decoration: none;" class="hero-btn"></a>
+           
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 id="aboutTitle"></h2>
+                <p id="aboutText"></p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="about-content text-center">
+                        <div class="about-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 id="aboutItem1Title"></h3>
+                        <p id="aboutItem1Text"></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="about-content text-center">
+                        <div class="about-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 id="aboutItem2Title"></h3>
+                        <p id="aboutItem2Text"></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="about-content text-center">
+                        <div class="about-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 id="aboutItem3Title"></h3>
+                        <p id="aboutItem3Text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="section" id="countries">
+        <div class="container">
+            <div class="section-title">
+                <h2 id="countriesTitle"></h2>
+                <p id="countriesText"></p>
+            </div>
+            <div class="countries-grid" id="countriesContainer">
+                <!-- Countries will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat1">12</div>
+                        <div class="stat-text" id="stat1Text"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat2">500+</div>
+                        <div class="stat-text" id="stat2Text"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat3">50+</div>
+                        <div class="stat-text" id="stat3Text"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat4">10</div>
+                        <div class="stat-text" id="stat4Text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 id="contactTitle"></h2>
+                <p id="contactText"></p>
+            </div>
+            <div class="contact-container">
+                <div class="row g-0">
+                    <div class="col-lg-5">
+                        <div class="contact-info">
+                            <h3 id="contactInfoTitle">Контактная информация</h3>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4 id="locationTitle">Адрес</h4>
+                                    <p id="addressText">г. Ташкент, ул. Мирzo Улугбек, 123</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4 id="phoneTitle">Телефон</h4>
+                                    <a  id="phoneText">+998 90 123 45 67</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4 id="telegramTitle">Telegram</h4>
+                                    <a href="https://t.me/yourusername" target="_blank" id="telegramText">@yourusername</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4 id="instagramTitle">Instagram</h4>
+                                    <a target="_blank" id="instagramText">@yourusername</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4 id="emailTitle">Email</h4>
+                                    <a id="emailText">info@globalconsulting.uz</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="contact-form-container">
+                            <form id="contactForm" class="contact-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id="nameForm" style="font-size: 14px; padding-left: 10px; color: #253167;"></div>
+                                        <input type="text" name="name" class="form-control" id="nameInput" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="emailForm" style="font-size: 14px; padding-left: 10px; color: #253167;"></div>
+                                        <input type="email" name="email" class="form-control" id="emailInput" required>
+                                    </div>
+                                </div>
+                                <div id="telForm" style="font-size: 14px; padding-left: 10px; color: #253167;"></div>
+                                <input type="tel" name="phone" class="form-control" id="phoneInput">
+                                <div id="messageForm" style="font-size: 14px; padding-left: 10px; color: #253167;"></div>
+                                <textarea class="form-control" name="message" id="messageInput" rows="5" required></textarea>
+                                <button type="submit" id="contactButton" class="hero-btn w-100"></button>
+                                <div id="status"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3 id="footerTitle"></h3>
+                    <p id="footerText" class="mt-3"></p>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 id="footerMenu1"></h5>
+                    <div class="footer-links">
+                        <a href="#hero" id="footerLink1"></a>
+                        <a href="#about" id="footerLink2"></a>
+                        <a href="#countries" id="footerLink3"></a>
+                        <a href="#contact" id="footerLink4"></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4" style="display: none;">
+                    <h5 id="footerMenu2"></h5>
+                    <div class="footer-links">
+                        <a href="#" id="serviceLink1"></a>
+                        <a href="#" id="serviceLink2"></a>
+                        <a href="#" id="serviceLink3"></a>
+                        <a href="#" id="serviceLink4"></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 id="footerContact"></h5>
+                    <div class="footer-links">
+                        <p><i class="fas fa-map-marker-alt me-2"></i> <span id="addressTextFooter"></span></p>
+                        <p><i class="fas fa-phone me-2"></i> <span id="phoneTextFooter"></span></p>
+                        <p><i class="fas fa-envelope me-2"></i> <span id="emailTextFooter"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p id="copyrightText"></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("status");
+  const nameInput = form.querySelector("input[name='name']");
+  const phoneInput = form.querySelector("input[name='phone']");
+  const messageInput = form.querySelector("textarea[name='message']");
+  const submitButton = form.querySelector("button[type='submit']");
+
+  let submitting = false;
+
+  // Защита от XSS
+  function escapeHtml(unsafe) {
+    if (typeof unsafe !== "string") return unsafe;
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Проверка телефона (узбекский)
+  function validatePhone(phone) {
+    const digits = phone.replace(/\D/g, "");
+    return /^(998\d{9}|9\d{8})$/.test(digits);
+  }
+
+  // Проверка лимита отправок (5 за 10 минут)
+  function isRateLimited() {
+    const now = Date.now();
+    const windowMs = 10 * 60 * 1000;
+
+    const stored = localStorage.getItem("successfulSubmissions");
+    const submissions = stored ? JSON.parse(stored) : [];
+
+    const recent = submissions.filter((time) => now - time <= windowMs);
+    return recent.length >= 5;
+  }
+
+  function recordSubmission() {
+    const now = Date.now();
+    const stored = localStorage.getItem("successfulSubmissions");
+    const submissions = stored ? JSON.parse(stored) : [];
+
+    submissions.push(now);
+    localStorage.setItem("successfulSubmissions", JSON.stringify(submissions));
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (submitting) return;
+
+    submitting = true;
+    submitButton.disabled = true;
+    status.textContent = "";
+
+    const rawName = nameInput.value.trim();
+    const rawPhone = phoneInput.value.trim();
+    const rawMessage = messageInput.value.trim();
+
+    let valid = true;
+
+    // Проверка имени (только буквы и пробелы)
+    const nameRegex = /^[A-Za-zА-Яа-яЁё\s]{2,}$/;
+    if (!nameRegex.test(rawName)) {
+      status.textContent =
+        "⚠️ Имя должно содержать только буквы и пробелы (мин. 2 символа)";
+      valid = false;
+    }
+
+    // Проверка телефона
+    if (!validatePhone(rawPhone)) {
+      status.textContent = "⚠️ Телефон в формате: 9xxxxxxxx или 998xxxxxxxxx";
+      valid = false;
+    }
+
+    if (!valid) {
+      submitting = false;
+      submitButton.disabled = false;
+      return;
+    }
+
+    // Проверка лимита
+    if (isRateLimited()) {
+      status.textContent = "⛔ Превышен лимит";
+      submitting = false;
+      submitButton.disabled = false;
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", escapeHtml(rawName));
+    formData.append("phone", escapeHtml(rawPhone));
+    formData.append("message", escapeHtml(rawMessage));
+
+    status.textContent = "⏳ Отправка...";
+
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbwlxGw1VxXE02iNO7Je8oCUgUA64cIVpLXx1PYMQzqSRKzLrilVmEn8tjVEfp0qFqHQYg/exec",
+        {
+          method: "POST",
+          body: new URLSearchParams(formData),
+        }
+      );
+
+      const text = await res.text();
+
+      if (text === "OK") {
+        status.textContent = "✅ Успешно отправлено!";
+        recordSubmission();
+        form.reset();
+      } else {
+        status.textContent = "⚠️ Ошибка сервера.";
+      }
+    } catch (err) {
+      console.error("Ошибка:", err);
+      status.textContent = "❌ Ошибка при отправке.";
+    } finally {
+      submitting = false;
+      submitButton.disabled = false;
+    }
+  });
+});
+
+
+
+        // Current language
+        let currentLang = 'ru';
+        let siteData = null;
+        
+        // Load data from JSON
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                siteData = await response.json();
+                renderContent();
+                renderCountries();
+                updateNavLinks();
+                updateLanguageDisplay();
+            } catch (error) {
+                console.error('Error loading ', error);
+            }
+        }
+        
+        // Update language display
+        function updateLanguageDisplay() {
+            const languageMap = {
+                'ru': 'РУС',
+                'uz': 'UZB',
+                'en': 'ENG'
+            };
+            
+            const currentLanguageText = document.getElementById('currentLanguageText');
+            if (currentLanguageText) {
+                currentLanguageText.textContent = languageMap[currentLang] || 'РУС';
+            }
+            
+            // Update active state in dropdown
+            document.querySelectorAll('.language-option').forEach(option => {
+                if (option.getAttribute('data-lang') === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            
+            // Update active state in mobile menu
+            document.querySelectorAll('.mobile-language-option').forEach(option => {
+                const icon = option.querySelector('i');
+                if (option.getAttribute('data-lang') === currentLang) {
+                    option.classList.add('active');
+                    if (icon) icon.className = 'fas fa-check';
+                } else {
+                    option.classList.remove('active');
+                    if (icon) icon.className = 'far fa-circle';
+                }
+            });
+        }
+        
+        // Update navigation links
+        function updateNavLinks() {
+            if (!siteData || !siteData.footer || !siteData.footer.links) return;
+            
+            // Desktop nav
+            const desktopLinks = document.querySelectorAll('.nav-link');
+            if (desktopLinks.length >= 4 && siteData.footer.links.length >= 4) {
+                desktopLinks[0].textContent = siteData.footer.links[0][currentLang];
+                desktopLinks[1].textContent = siteData.footer.links[1][currentLang];
+                desktopLinks[2].textContent = siteData.footer.links[2][currentLang];
+                desktopLinks[3].textContent = siteData.footer.links[3][currentLang];
+            }
+            
+            // Mobile nav
+            document.getElementById('mobileNavHome').textContent = siteData.footer.links[0]?.[currentLang] || '';
+            document.getElementById('mobileNavAbout').textContent = siteData.footer.links[1]?.[currentLang] || '';
+            document.getElementById('mobileNavCountries').textContent = siteData.footer.links[2]?.[currentLang] || '';
+            document.getElementById('mobileNavContact').textContent = siteData.footer.links[3]?.[currentLang] || '';
+        }
+        
+        // Render content based on language
+        function renderContent() {
+            if (!siteData) return;
+            
+            try {
+                // Logo
+               
+                
+                // Hero section
+                document.getElementById('heroTitle').textContent = siteData.hero.title[currentLang];
+                document.getElementById('heroSubtitle').textContent = siteData.hero.subtitle[currentLang];
+                document.getElementById('heroButton').textContent = siteData.hero.button[currentLang];
+                
+                // About section
+                document.getElementById('aboutTitle').textContent = siteData.about.title[currentLang];
+                document.getElementById('aboutText').textContent = siteData.about.text[currentLang];
+                
+                if (siteData.about.items && siteData.about.items.length >= 3) {
+                    document.getElementById('aboutItem1Title').textContent = siteData.about.items[0].title[currentLang];
+                    document.getElementById('aboutItem1Text').textContent = siteData.about.items[0].text[currentLang];
+                    document.getElementById('aboutItem2Title').textContent = siteData.about.items[1].title[currentLang];
+                    document.getElementById('aboutItem2Text').textContent = siteData.about.items[1].text[currentLang];
+                    document.getElementById('aboutItem3Title').textContent = siteData.about.items[2].title[currentLang];
+                    document.getElementById('aboutItem3Text').textContent = siteData.about.items[2].text[currentLang];
+                }
+                
+                // Countries section
+                document.getElementById('countriesTitle').textContent = siteData.countries.title[currentLang];
+                document.getElementById('countriesText').textContent = siteData.countries.text[currentLang];
+                
+                // Stats section
+                if (siteData.stats.items && siteData.stats.items.length >= 4) {
+                    document.getElementById('stat1Text').textContent = siteData.stats.items[0].text[currentLang];
+                    document.getElementById('stat2Text').textContent = siteData.stats.items[1].text[currentLang];
+                    document.getElementById('stat3Text').textContent = siteData.stats.items[2].text[currentLang];
+                    document.getElementById('stat4Text').textContent = siteData.stats.items[3].text[currentLang];
+                }
+                
+                // Contact section
+                document.getElementById('contactTitle').textContent = siteData.contact.title[currentLang];
+                document.getElementById('contactText').textContent = siteData.contact.text[currentLang];
+                document.getElementById('nameForm').textContent = siteData.contact.namePlaceholder[currentLang];
+                document.getElementById('emailForm').textContent = siteData.contact.emailPlaceholder[currentLang];
+                document.getElementById('telForm').textContent = siteData.contact.phonePlaceholder[currentLang];
+                document.getElementById('messageForm').textContent = siteData.contact.messagePlaceholder[currentLang];
+                document.getElementById('nameInput').placeholder = siteData.contact.namePlaceholder?.[currentLang] || '';
+                document.getElementById('emailInput').placeholder = siteData.contact.emailPlaceholder?.[currentLang] || '';
+                document.getElementById('phoneInput').placeholder = siteData.contact.phonePlaceholder?.[currentLang] || '';
+                document.getElementById('messageInput').placeholder = siteData.contact.messagePlaceholder?.[currentLang] || '';
+                document.getElementById('contactButton').textContent = siteData.contact.button[currentLang];
+                
+                // Contact info section
+                document.getElementById('contactInfoTitle').textContent = siteData.contact.infoTitle?.[currentLang] || 'Контактная информация';
+                document.getElementById('locationTitle').textContent = siteData.contact.locationTitle?.[currentLang] || 'Адрес';
+                document.getElementById('phoneTitle').textContent = siteData.contact.phoneTitle?.[currentLang] || 'Телефон';
+                document.getElementById('telegramTitle').textContent = siteData.contact.telegramTitle?.[currentLang] || 'Telegram';
+                document.getElementById('instagramTitle').textContent = siteData.contact.instagramTitle?.[currentLang] || 'Instagram';
+                document.getElementById('emailTitle').textContent = siteData.contact.emailTitle?.[currentLang] || 'Email';
+                
+                document.getElementById('addressText').textContent = siteData.contact.address?.[currentLang] || '';
+                document.getElementById('phoneText').textContent = siteData.contact.phone?.[currentLang] || '';
+                document.getElementById('telegramText').textContent = siteData.contact.telegram?.[currentLang] || '@yourusername';
+                document.getElementById('instagramText').textContent = siteData.contact.instagram?.[currentLang] || '@yourusername';
+                document.getElementById('emailText').textContent = siteData.contact.emailContact?.[currentLang] || '';
+                
+                // Social links
+                const telegramLink = document.getElementById('telegramLink');
+                const instagramLink = document.getElementById('instagramLink');
+                
+                if (telegramLink && siteData.contact.telegramLink) {
+                    telegramLink.href = siteData.contact.telegramLink[currentLang] || 'https://t.me/yourusername';
+                }
+                
+                if (instagramLink && siteData.contact.instagramLink) {
+                    instagramLink.href = siteData.contact.instagramLink[currentLang] || 'https://instagram.com/yourusername';
+                }
+                
+                // Footer section
+                document.getElementById('footerTitle').textContent = siteData.footer.title?.[currentLang] || '';
+                document.getElementById('footerText').textContent = siteData.footer.text?.[currentLang] || '';
+                document.getElementById('footerMenu1').textContent = siteData.footer.menu1?.[currentLang] || '';
+                document.getElementById('footerMenu2').textContent = siteData.footer.menu2?.[currentLang] || '';
+                document.getElementById('footerContact').textContent = siteData.footer.contact?.[currentLang] || '';
+                
+                if (siteData.footer.links && siteData.footer.links.length >= 4) {
+                    document.getElementById('footerLink1').textContent = siteData.footer.links[0][currentLang];
+                    document.getElementById('footerLink2').textContent = siteData.footer.links[1][currentLang];
+                    document.getElementById('footerLink3').textContent = siteData.footer.links[2][currentLang];
+                    document.getElementById('footerLink4').textContent = siteData.footer.links[3][currentLang];
+                }
+                
+                if (siteData.footer.services && siteData.footer.services.length >= 4) {
+                    document.getElementById('serviceLink1').textContent = siteData.footer.services[0][currentLang];
+                    document.getElementById('serviceLink2').textContent = siteData.footer.services[1][currentLang];
+                    document.getElementById('serviceLink3').textContent = siteData.footer.services[2][currentLang];
+                    document.getElementById('serviceLink4').textContent = siteData.footer.services[3][currentLang];
+                }
+                
+                document.getElementById('addressTextFooter').textContent = siteData.footer.address?.[currentLang] || '';
+                document.getElementById('phoneTextFooter').textContent = siteData.footer.phone?.[currentLang] || '';
+                document.getElementById('emailTextFooter').textContent = siteData.footer.email?.[currentLang] || '';
+                document.getElementById('copyrightText').innerHTML = siteData.footer.copyright[currentLang];
+                
+                // Mobile language section
+                document.getElementById('mobileLanguageTitle').textContent = siteData.footer.menu1?.[currentLang] || 'Язык';
+                document.getElementById('langRu').textContent = siteData.footer.links?.[0]?.[currentLang] || 'Русский';
+                document.getElementById('langUz').textContent = siteData.footer.links?.[1]?.[currentLang] || 'O\'zbek';
+                document.getElementById('langEn').textContent = siteData.footer.links?.[2]?.[currentLang] || 'English';
+                
+            } catch (error) {
+                console.error('Error rendering content:', error);
+            }
+        }
+        
+        // Render countries
+        function renderCountries() {
+            if (!siteData || !siteData.countries || !siteData.countries.list) return;
+            
+            try {
+                const container = document.getElementById('countriesContainer');
+                container.innerHTML = '';
+                
+                siteData.countries.list.forEach((country, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'country-card';
+                    card.innerHTML = `
+                        <img src="${country.image || 'https://placehold.co/400x200/2563eb/white?text=' + (country.name?.ru || 'Country')}" class="country-img" alt="${country.name?.[currentLang] || 'Country'}">
+                        <div class="country-content">
+                            <h3>${country.name?.[currentLang] || ''}</h3>
+                            <p>${country.description?.[currentLang] || ''}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error rendering countries:', error);
+                document.getElementById('countriesContainer').innerHTML = '<p>Ошибка загрузки стран</p>';
+            }
+        }
+        
+        // Language change handler
+        function changeLanguage(lang) {
+            currentLang = lang;
+            if (siteData) {
+                renderContent();
+                updateNavLinks();
+                updateLanguageDisplay();
+            }
+        }
+        
+        // Mobile menu functions
+        function openMobileMenu() {
+            document.getElementById('mobileNavOverlay').classList.add('show');
+            document.getElementById('mobileNavContent').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileNavOverlay').classList.remove('show');
+            document.getElementById('mobileNavContent').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Contact form handler
+      
+        
+        // Smooth scrolling for anchor links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || targetId === '#!') return;
+                    
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        closeMobileMenu();
+                    }
+                });
+            });
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load initial data
+            loadData();
+            
+            // Desktop language switcher
+            const languageBtn = document.getElementById('languageBtn');
+            const languageDropdown = document.getElementById('languageDropdown');
+            
+            if (languageBtn) {
+                languageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    languageDropdown.classList.toggle('show');
+                });
+            }
+            
+            // Language options
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    languageDropdown.classList.remove('show');
+                });
+            });
+            
+            // Mobile language options
+            document.querySelectorAll('.mobile-language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    closeMobileMenu();
+                });
+            });
+            
+            // Mobile menu triggers
+            const mobileNavTrigger = document.getElementById('mobileNavTrigger');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            
+            if (mobileNavTrigger) {
+                mobileNavTrigger.addEventListener('click', openMobileMenu);
+            }
+            
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            }
+            
+            if (mobileNavOverlay) {
+                mobileNavOverlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (languageDropdown && !languageDropdown.contains(e.target) && 
+                    languageBtn && !languageBtn.contains(e.target)) {
+                    languageDropdown.classList.remove('show');
+                }
+            });
+            
+            // Setup smooth scrolling
+            setupSmoothScrolling();
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const mobileNavContent = document.getElementById('mobileNavContent');
+                const mobileNavTrigger = document.getElementById('mobileNavTrigger');
+                
+                if (mobileNavContent && mobileNavContent.classList.contains('show') && 
+                    !mobileNavContent.contains(e.target) && 
+                    mobileNavTrigger && !mobileNavTrigger.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
